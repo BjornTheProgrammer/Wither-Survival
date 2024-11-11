@@ -1,0 +1,4 @@
+name: WitherSurvival
+version: '${version}'
+main: net.zhendema.withersurvival.WitherSurvival
+api-version: '1.21'
