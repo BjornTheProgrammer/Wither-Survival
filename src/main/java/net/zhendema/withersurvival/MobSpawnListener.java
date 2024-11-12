@@ -4,10 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.boss.BossBar;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Animals;
 import org.bukkit.entity.Blaze;
-import org.bukkit.entity.Creature;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EnderDragonPart;
 import org.bukkit.entity.Enderman;
@@ -22,8 +19,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.world.EntitiesLoadEvent;
 import org.bukkit.event.world.EntitiesUnloadEvent;
-
-import java.util.stream.Collectors;
 
 public class MobSpawnListener implements Listener {
     int monsterSpawnLimit;
@@ -73,7 +68,7 @@ public class MobSpawnListener implements Listener {
         remove_boss_bar(entity);
         if (entity instanceof Enderman) {
             if (world.getEnvironment() == Environment.THE_END) e.setCancelled(true);
-            else if (Math.random() < 0.01) e.setCancelled(true);
+            else if (Math.random() < 0.10) e.setCancelled(true);
             else spawnWither(entity);
         }
         if (is_allowed_to_exist(entity)) return;
