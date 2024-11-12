@@ -3,7 +3,9 @@ package net.zhendema.withersurvival;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
+import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Animals;
 import org.bukkit.entity.Blaze;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.EnderDragon;
@@ -19,6 +21,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.world.EntitiesLoadEvent;
+import org.bukkit.event.world.EntitiesUnloadEvent;
 
 import java.util.stream.Collectors;
 
@@ -43,22 +46,23 @@ public class MobSpawnListener implements Listener {
     public void remove_boss_bar(Entity entity) {
         if (entity instanceof Wither) {
             Wither wither = (Wither) entity;
-            wither.getBossBar().setVisible(false);
+            BossBar bar = wither.getBossBar();
+            if (bar.isVisible()) bar.setVisible(false);
             return;
         }
     }
 
-    public void spawnWither(CreatureSpawnEvent e) {
-        World world = e.getEntity().getWorld();
-        Location location = e.getLocation();
+    public void spawnWither(Entity entity) {
+        World world = entity.getWorld();
+        Location location = entity.getLocation();
 
-        if (world
-                .getEntities()
-                .stream()
-                .filter(f -> f instanceof Monster)
-                .collect(Collectors.toList())
-                .size() < this.monsterSpawnLimit * 2
-        ) world.spawnEntity(location, EntityType.WITHER);
+        long numberOfMonsters = world
+            .getEntities()
+            .stream()
+            .filter(f -> f instanceof Monster)
+            .count();
+
+        if (numberOfMonsters < this.monsterSpawnLimit) world.spawnEntity(location, EntityType.WITHER);
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
@@ -69,12 +73,12 @@ public class MobSpawnListener implements Listener {
         remove_boss_bar(entity);
         if (entity instanceof Enderman) {
             if (world.getEnvironment() == Environment.THE_END) e.setCancelled(true);
-            else if (Math.random() < 0.2) e.setCancelled(true);
-            else spawnWither(e);
+            else if (Math.random() < 0.01) e.setCancelled(true);
+            else spawnWither(entity);
         }
         if (is_allowed_to_exist(entity)) return;
 
-        spawnWither(e);
+        spawnWither(entity);
 
         e.setCancelled(true);
     }
@@ -84,6 +88,14 @@ public class MobSpawnListener implements Listener {
         for (Entity entity : event.getEntities()) {
             remove_boss_bar(entity);
         }
-        event.getEntities().stream().filter(e -> !is_allowed_to_exist(e)).forEach(e -> e.remove());
+        event.getEntities().stream().filter(e -> !is_allowed_to_exist(e)).forEach(e -> {
+            spawnWither(e);
+            e.remove();
+        });
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
+    public void onEntitiesUnloadEvent(EntitiesUnloadEvent event) {
+        event.getEntities().stream().filter(e -> e.getType() != EntityType.PLAYER).forEach(e -> e.remove());
     }
 }
