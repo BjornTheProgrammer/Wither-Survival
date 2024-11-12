@@ -23,3 +23,11 @@ The End has the Endermen replaced with Withers instead. Blazes and endermen stil
 The time is always set to night, although it appears to look like day, add torches everywhere!
 
 <img src="./media/overworld.png" alt="Wither Survival as it appears in the overworld" />
+
+## Any other gameplay ideas?
+
+I'd love to hear them, create an [issue](https://github.com/BjornTheProgrammer/Wither-Survival/issues), and let's see if it can be implemented.
+
+## License
+
+This plugin is licensed under MIT.
