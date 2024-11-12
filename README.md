@@ -1,3 +1,5 @@
+<img src="https://github.com/user-attachments/assets/a7365639-16f9-4bac-9999-2d5348ab5174" width="100" />
+
 # Wither Survival
 
 Every mob turns into Withers. Except for Endermen, Blazes, and the Dragon. The goal is to beat the game.
