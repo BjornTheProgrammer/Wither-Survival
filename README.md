@@ -18,11 +18,11 @@ This plugin applies to all worlds, and will cause destruction to your worlds.
 
 The End has the Endermen replaced with Withers instead. Blazes and endermen still spawn naturally.
 
-<img src="./media/end.png" alt="Wither Survival as it appears in the end" />
+![Wither Survival as it appears in the end](https://raw.githubusercontent.com/BjornTheProgrammer/Wither-Survival/refs/heads/main/media/end.png)
 
 The time is always set to night, although it appears to look like day, add torches everywhere!
 
-<img src="./media/overworld.png" alt="Wither Survival as it appears in the overworld" />
+![Wither Survival as it appears in the overworld](https://raw.githubusercontent.com/BjornTheProgrammer/Wither-Survival/refs/heads/main/media/overworld.png)
 
 ## Any other gameplay ideas?
 
