@@ -6,6 +6,10 @@ Every mob turns into Withers. Except for Endermen, Blazes, and the Dragon. The g
 
 Inspired by [Azp3ct's video](https://www.youtube.com/watch?v=UVnBT9o40sQ), "Can You Beat Minecraft if Every Mob is the Wither?"
 
+## Youtube Overview
+
+[![Video of Wither Survival in action](https://img.youtube.com/vi/x9gLFgzYxnw/0.jpg)](https://www.youtube.com/watch?v=x9gLFgzYxnw)
+
 ## Installation
 1. Make a Bukkit, Spigot, or PaperMC minecraft server, following [this](https://www.youtube.com/watch?v=VQlUft3ITGE&t=283s) guide.
 2. Download the latest release from the [releases](https://github.com/BjornTheProgrammer/Wither-Survival/releases) tab.
